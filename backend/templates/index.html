@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>dtdrawthingscustomizebarHTML</title>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+        <style type='text/css'>body{margin:0;padding:0;overflow:hidden;font-family:'Segoe UI',Helvetica,Arial,Sans-Serif}</style>
+    </head>
+    <body>
+        <div id='printoutPanel'></div>
+        
+        <div id='myMap' style='width: 100vw; height: 100vh;'></div>
+        <script type='text/javascript'>
+            function loadMapScenario() {
+                var map = new Microsoft.Maps.Map(document.getElementById('myMap'), {});
+                var center = map.getCenter();
+                var points = {{points}};
+                var locations = [];
+                console.log(points);
+                points.forEach(point => {
+                    console.log(point[0]);
+                    locations.push(new Microsoft.Maps.Location(point[0], point[1]));
+                });
+                console.log(locations);
+                var way = new Microsoft.Maps.Polyline(locations, {strokeColor: 'red', strokeThickness: 3});
+                    // new Microsoft.Maps.Location(49.745330, 24.100513),
+                    // new Microsoft.Maps.Location(49.746107, 24.101285),
+                    // new Microsoft.Maps.Location(49.746889, 24.102201),
+                    // new Microsoft.Maps.Location(49.746834, 24.102330),
+                    // new Microsoft.Maps.Location(49.746318, 24.101872)
+                // ]);
+                
+                map.entities.push(way);
+            }
+        </script>
+        <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AnD3n610CG8EZCT_AF9BXeXIYTu2byvCHhxXJSolAdeehKUK_SmiVXX5CVU7ZczD&callback=loadMapScenario' async defer></script>
+    </body>
+</html>
